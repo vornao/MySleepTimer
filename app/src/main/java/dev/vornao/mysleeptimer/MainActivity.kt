@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         var timerValue = 0
         val addTime = findViewById<Button>(R.id.add_time)
         val subTime = findViewById<Button>(R.id.sub_time)
-        val startTimer = findViewById<Button>(R.id.start_timer)
         val timeText = findViewById<TextView>(R.id.time)
         val devicePolicyManager = getSystemService(DEVICE_POLICY_SERVICE) as DevicePolicyManager
         val sleepAdminReceiver = ComponentName(this, SleepAdminReceiver::class.java)
@@ -40,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         // check if there is a timer running and cancel it
         if (workManager.getWorkInfosByTag("sleep").get().size > 0) {
             workManager.cancelAllWorkByTag("sleep")
-            Snackbar.make(startTimer, "All timers cancelled", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(addTime, "All timers cancelled", Snackbar.LENGTH_SHORT).show()
         }
 
         if (!devicePolicyManager.isAdminActive(sleepAdminReceiver)) {
@@ -50,37 +49,19 @@ class MainActivity : AppCompatActivity() {
         addTime.setOnClickListener {
             timerValue += 5
             timeText.text = getString(R.string.minutes_tv, timerValue)
+            rescheduleTimer(timerValue)
         }
 
         subTime.setOnClickListener {
             timerValue -= 5
-            if (timerValue < 0) {
+            if (timerValue <= 0) {
                 timerValue = 0
+                timeText.text = getString(R.string.no_timer_set)
+            }else{
+                timeText.text = getString(R.string.minutes_tv, timerValue)
+
             }
-            timeText.text = getString(R.string.minutes_tv, timerValue)
-        }
-
-        startTimer.setOnClickListener {
-            if (timerValue == 0) {
-                Snackbar.make(it, "Timer value cannot be 0", Snackbar.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            // create sleep work request with timer value as initial delay and tag sleep
-            val sleepWorkRequest = OneTimeWorkRequestBuilder<SleepWorker>()
-                .setInitialDelay((timerValue).toLong(), java.util.concurrent.TimeUnit.MINUTES)
-                .addTag("sleep")
-                .build()
-
-            workManager.enqueue(sleepWorkRequest)
-
-            // add snackbar with button to dismiss the timer
-            Snackbar.make(it, "Timer set for $timerValue minutes", Snackbar.LENGTH_LONG)
-                .setAction("Dismiss") {
-                    workManager.cancelAllWorkByTag("sleep")
-                }.show()
-
-            Log.d("MainActivity", "Timer set for $timerValue minutes")
-
+            rescheduleTimer(timerValue)
         }
     }
 
@@ -88,12 +69,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val startTimer = findViewById<Button>(R.id.start_timer)
         val workManager = WorkManager.getInstance(this)
         // delete all work with tag sleep if there is any and status is enqueued
         if (workManager.getWorkInfosByTag("sleep").get().size > 0) {
             workManager.cancelAllWorkByTag("sleep")
-            Snackbar.make(startTimer, "All timers cancelled", Snackbar.LENGTH_SHORT).show()
         }
     }
 
@@ -142,7 +121,24 @@ class MainActivity : AppCompatActivity() {
                 ).show()
             }
         }
+    }
 
+    private fun rescheduleTimer(timerValue: Int) {
+        val workManager = WorkManager.getInstance(this)
+        // delete all work with tag sleep if there is any and status is enqueued
+        if (workManager.getWorkInfosByTag("sleep").get().size > 0) {
+            workManager.cancelAllWorkByTag("sleep")
+        }
 
+        if (timerValue == 0) {
+            return
+        }
+
+        val sleepTimer = OneTimeWorkRequestBuilder<SleepWorker>()
+            .setInitialDelay(timerValue.toLong(), java.util.concurrent.TimeUnit.MINUTES)
+            .addTag("sleep")
+            .build()
+
+        workManager.enqueue(sleepTimer)
     }
 }

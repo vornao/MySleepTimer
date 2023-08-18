@@ -13,12 +13,13 @@
         android:gravity="center"
         >
 
+
         <TextView
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="No timer set"
+            android:text="@string/no_timer_set"
             android:layout_gravity="center"
             android:textSize="30sp"
             android:layout_marginBottom="40dp"
@@ -27,48 +28,35 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingStart="40dp"
-            android:paddingEnd="40dp"
+            android:gravity="center"
             android:orientation="horizontal">
+
 
             <Button
                 android:id="@+id/sub_time"
-                style="@style/Widget.Material3.Button.OutlinedButton"
+                style="?attr/materialIconButtonFilledTonalStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                app:cornerRadius="40dp"
-                android:text="-"/>
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                app:icon = "@drawable/baseline_remove_24"
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                />
+           />
+
+
 
             <Button
                 android:id="@+id/add_time"
-                style="@style/Widget.Material3.Button.OutlinedButton"
+                style="?attr/materialIconButtonFilledTonalStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                app:cornerRadius="40dp"
-                android:text="+"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+
+                app:icon = "@drawable/baseline_add_24"
                 />
 
-
         </LinearLayout>
-
-        <Button
-            android:layout_width="match_parent"
-            style="@style/Widget.Material3.Button.TonalButton"
-            android:layout_height="wrap_content"
-            android:layout_margin="40dp"
-            android:text="Start"
-            android:id="@+id/start_timer"
-            android:layout_gravity="bottom|center_horizontal"
-            />
 
     </LinearLayout>
 
