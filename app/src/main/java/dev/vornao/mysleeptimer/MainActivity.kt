@@ -87,10 +87,7 @@ class MainActivity : AppCompatActivity() {
                         this,
                         "Device admin enabled",
                         Toast.LENGTH_SHORT).show()
-                        // relaunch app
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
+                        //TODO: make dialog to ask for restart
                 } else {
                     Toast.makeText(
                         this,
@@ -106,7 +103,7 @@ class MainActivity : AppCompatActivity() {
         // RequestPermission
 
         val rp = ActivityResultContracts.RequestPermission()
-        val r = registerForActivityResult(rp) { result ->
+        registerForActivityResult(rp) { result ->
             if (result) {
                 Toast.makeText(
                     this,
