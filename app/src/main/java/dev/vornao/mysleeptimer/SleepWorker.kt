@@ -24,7 +24,6 @@ class SleepWorker (private val ctx: Context, params: WorkerParameters) : Worker(
             deviceManager.lockNow()
         } catch (e: Exception) {
             Log.e("SleepWorker", "Error locking device: ${e.message}")
-            postLockNotification()
             return Result.failure()
         }
         return Result.success()
