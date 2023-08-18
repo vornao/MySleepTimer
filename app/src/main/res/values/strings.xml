@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MySleepTImer</string>
+    <string name="minutes_tv">Locking in %1$d minutes</string>
+</resources>
