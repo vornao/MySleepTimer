@@ -22,6 +22,9 @@ class SleepWorker (private val ctx: Context, params: WorkerParameters) : Worker(
         val deviceManager = ctx.getSystemService(DEVICE_POLICY_SERVICE) as DevicePolicyManager
         try {
             deviceManager.lockNow()
+            // cancel notification
+            val notificationManager = ctx.getSystemService(Context.NOTIFICATION_SERVICE) as android.app.NotificationManager
+            notificationManager.cancel(1)
         } catch (e: Exception) {
             Log.e("SleepWorker", "Error locking device: ${e.message}")
             return Result.failure()
