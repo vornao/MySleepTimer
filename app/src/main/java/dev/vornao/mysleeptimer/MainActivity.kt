@@ -8,16 +8,16 @@ import android.app.PendingIntent.FLAG_ONE_SHOT
 import android.app.admin.DevicePolicyManager
 import android.content.ComponentName
 import android.content.Intent
-import android.content.pm.PackageManager
+
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityCompat
+
 import androidx.core.app.NotificationManagerCompat
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
@@ -64,11 +64,22 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
+        scheduleTimer(timerValue)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        timerValue = 0
+        val timeText = findViewById<TextView>(R.id.time)
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as android.app.NotificationManager
         val workManager = WorkManager.getInstance(this)
+
+        timeText.text = getString(R.string.no_timer_set)
+        notificationManager.cancelAll()
+
         if (workManager.getWorkInfosByTag("sleep").get().size > 0) {
             workManager.cancelAllWorkByTag("sleep")
         }
-        rescheduleTimer(timerValue)
     }
 
     private fun requestAdmin(sleepAdminReceiver: ComponentName) {
@@ -96,9 +107,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     @SuppressLint("MissingPermission")
-    private fun rescheduleTimer(timerValue: Int) {
+    private fun scheduleTimer(timerValue: Int) {
         if (timerValue == 0) return
-
         val workManager = WorkManager.getInstance(this)
         val sleepTimer = OneTimeWorkRequestBuilder<SleepWorker>()
             .setInitialDelay(timerValue.toLong(), java.util.concurrent.TimeUnit.MINUTES)
