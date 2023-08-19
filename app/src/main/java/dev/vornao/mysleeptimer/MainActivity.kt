@@ -154,7 +154,7 @@ class MainActivity : AppCompatActivity() {
 
         return androidx.core.app.NotificationCompat.Builder(
             this, getString(R.string.notification_channel_id))
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setSmallIcon(R.drawable.baseline_nights_stay_24)
             .setContentTitle(getString(R.string.sleep_set_notification_title))
             .setContentText(getString(R.string.notification_text, timeString))
             .setChannelId(getString(R.string.notification_channel_id))
