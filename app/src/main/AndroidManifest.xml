@@ -33,6 +33,13 @@
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
         </receiver>
+
+        <receiver android:name=".SleepDismissReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="dev.vornao.ACTION_DISMISS" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

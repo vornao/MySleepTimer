@@ -28,36 +28,4 @@ class SleepWorker (private val ctx: Context, params: WorkerParameters) : Worker(
         }
         return Result.success()
     }
-
-    @SuppressLint("MissingPermission")
-    private fun postLockNotification() {
-        // post a notification to the user that the device has been locked
-        val newIntent = Intent(applicationContext, MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        }
-
-        val pendingIntent: PendingIntent =
-            PendingIntent.getActivity(
-                applicationContext,
-                42,
-                newIntent,
-                PendingIntent.FLAG_IMMUTABLE
-            )
-
-        val notificationManager = NotificationManagerCompat.from(applicationContext)
-
-        val notificationBuilder =
-            NotificationCompat.Builder(
-                applicationContext,
-                "LockNotification"
-            )
-
-        notificationBuilder.setContentTitle("Device Locked")
-            .setContentText("Device was Locked by MySleepTimer")
-            .setSmallIcon(R.mipmap.ic_launcher_round)
-            .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
-
-        notificationManager.notify(1, notificationBuilder.build())
-    }
 }

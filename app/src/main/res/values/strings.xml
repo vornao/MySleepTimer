@@ -2,4 +2,19 @@
     <string name="app_name">MySleepTimer</string>
     <string name="minutes_tv">Locking in %1$d minutes</string>
     <string name="no_timer_set">No timer set</string>
+    <string name="device_admin_disabled">Device Admin Disabled</string>
+    <string name="device_admin_enabled">Device Admin Enabled</string>
+    <string name="explaination_admin">This app needs admin permission to lock the device</string>
+    <string name="dialog_admin_error_message">If you don\'t grant admin permission, the app will not work properly</string>
+    <string name="dialog_admin_error_title">Admin permission required</string>
+    <string name="all_timers_cancelled">All timers cancelled</string>
+    <string name="notification_channel_id">MySleepTimer notifications</string>
+    <string name="notification_channel_name">MySleepTimer Notifications</string>
+    <string name="notification_channel_description">This channel will be used to post MySleepTimer notifications</string>
+    <string name="dialog_notification_error_title">Notifications won\'t be enabled</string>
+    <string name="dialog_notification_error_message">If you wish to enable notifications, please go to this app\'s settings and enable notification permission.</string>
+    <string name="sleep_set_notification_title">SleepTimer set</string>
+    <string name="notification_text">Phone screen will be locked by %s</string>
+    <string name="notification_action_dismiss">Dismiss</string>
+    <string name="intent_dismiss">dev.vornao.ACTION_DISMISS</string>
 </resources>
