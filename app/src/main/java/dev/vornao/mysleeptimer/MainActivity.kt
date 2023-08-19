@@ -148,7 +148,6 @@ class MainActivity : AppCompatActivity() {
             .setContentTitle(getString(R.string.sleep_set_notification_title))
             .setContentText(getString(R.string.notification_text, timeString))
             .setChannelId(getString(R.string.notification_channel_id))
-            // TODO: implement dismiss button
             .addAction(R.drawable.ic_launcher_foreground, "Dismiss", pendingIntent)
             .setAutoCancel(true)
             .build()
