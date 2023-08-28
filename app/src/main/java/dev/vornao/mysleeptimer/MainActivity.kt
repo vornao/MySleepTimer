@@ -11,6 +11,7 @@ import android.content.ComponentName
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
@@ -48,6 +49,9 @@ class MainActivity : AppCompatActivity() {
 
         addTime.setOnClickListener {
             timerValue += 5
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                it.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+            }
             timeText.text = getString(R.string.minutes_tv, timerValue)
         }
 
@@ -56,7 +60,12 @@ class MainActivity : AppCompatActivity() {
             if (timerValue <= 0) {
                 timerValue = 0
                 timeText.text = getString(R.string.no_timer_set)
-            } else timeText.text = getString(R.string.minutes_tv, timerValue)
+            } else {
+                timeText.text = getString(R.string.minutes_tv, timerValue)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    it.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                }
+            }
         }
     }
 
@@ -117,7 +126,7 @@ class MainActivity : AppCompatActivity() {
         if (timerValue == 0) return
         val workManager = WorkManager.getInstance(this)
         val sleepTimer = OneTimeWorkRequestBuilder<SleepWorker>()
-            .setInitialDelay(timerValue.toLong(), java.util.concurrent.TimeUnit.SECONDS)
+            .setInitialDelay(timerValue.toLong(), java.util.concurrent.TimeUnit.MINUTES)
             .addTag("sleep")
             .build()
         workManager.enqueue(sleepTimer)
