@@ -60,10 +60,6 @@ Contributions to MySleepTimer are welcome! If you'd like to contribute to the pr
 
 This project is licensed under the [MIT License](LICENSE).
 
-## Contact
 
-If you have any questions or issues with MySleepTimer, feel free to contact the project maintainer at [your-email@example.com](mailto:your-email@example.com).
-
-Enjoy using MySleepTimer, and may it help you have a more restful night's sleep!
 
 Note: description generated automatically by LLM, since i am lazy :)
