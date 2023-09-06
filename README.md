@@ -1,5 +1,3 @@
-Certainly! Here's an updated README with a screenshot section:
-
 # MySleepTimer
 
 **MySleepTimer** is a minimalist Android app written in Kotlin that automatically locks your screen based on a timer. Its primary purpose is to lock the screen when you fall asleep, allowing you to stop music or videos playing on your device by simply locking the screen. The app features a dark user interface designed to be easy on the eyes during nighttime use. With just two buttons, simplicity and ease of use are at the core of this application.
@@ -73,4 +71,4 @@ If you have any questions or issues with MySleepTimer, feel free to contact the 
 
 Enjoy using MySleepTimer, and may it help you have a more restful night's sleep!
 
-
+Note: generated automatically by LLM.
