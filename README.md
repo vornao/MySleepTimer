@@ -16,7 +16,7 @@ Certainly! Here's an updated README with a screenshot section:
 
 ## Screenshots
 
-![Screenshot 1](/screenshots/mainActivity.png)
+![Screenshot 1](/screenshots/MainActivity.png)
 *MySleepTimer minimal interface*
 
 ## Getting Started
