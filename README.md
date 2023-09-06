@@ -12,11 +12,6 @@
 
 - **Efficient Scheduling**: The app leverages Kotlin and WorkManager to efficiently schedule screen locking tasks, ensuring reliable performance and minimal battery consumption.
 
-## Screenshots
-
-![Screenshot 1](/screenshots/MainActivity.png)
-*MySleepTimer minimal interface*
-
 ## Getting Started
 
 To use MySleepTimer, follow these steps:
@@ -63,7 +58,7 @@ Contributions to MySleepTimer are welcome! If you'd like to contribute to the pr
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE). Feel free to use and modify the code as per the terms of the license.
+This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
 
@@ -71,4 +66,4 @@ If you have any questions or issues with MySleepTimer, feel free to contact the 
 
 Enjoy using MySleepTimer, and may it help you have a more restful night's sleep!
 
-Note: description generated automatically by LLM.
+Note: description generated automatically by LLM, since i am lazy :)
