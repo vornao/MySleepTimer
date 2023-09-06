@@ -71,4 +71,4 @@ If you have any questions or issues with MySleepTimer, feel free to contact the 
 
 Enjoy using MySleepTimer, and may it help you have a more restful night's sleep!
 
-Note: generated automatically by LLM.
+Note: description generated automatically by LLM.
